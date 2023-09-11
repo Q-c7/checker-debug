@@ -107,6 +107,23 @@ def _get_git_changes(
             print_info(git_status)
             changes = git_status.split('\n')
         elif git_changes_type == 'log_between_no_upstream':
+
+            print_info("DEBUG INFO", color='orange')
+            dbg_gitlog = subprocess.run(
+                'git --no-pager log --decorate=short -n100',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(dbg_gitlog, color='orange')
+            dbg_gitstatus = subprocess.run(
+                'git status',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(dbg_gitstatus, color='orange')
+
             print_info(f'Looking log_between_no_upstream between {prev_commit_sha} and {current_commit_sha} '
                        f'which not in `{public_repo_url}`...')
 
