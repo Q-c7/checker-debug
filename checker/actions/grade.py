@@ -110,6 +110,7 @@ def _get_git_changes(
 
             print_info("DEBUG INFO", color='orange')
             dbg_gitlog = subprocess.run(
+                f'cd {solution_root} && ' +
                 'git --no-pager log --decorate=short -n100',
                 encoding='utf-8',
                 capture_output=True,
@@ -119,6 +120,7 @@ def _get_git_changes(
             print_info(dbg_gitlog.stderr, color='red')
             print_info("-" * 10, color='red')
             dbg_gitstatus = subprocess.run(
+                f'cd {solution_root} && ' +
                 'git status',
                 encoding='utf-8',
                 capture_output=True,
@@ -129,6 +131,7 @@ def _get_git_changes(
             print_info("-" * 10, color='red')
 
             repository_name = subprocess.run(
+                f'cd {solution_root} && ' +
                 'basename `git rev-parse --show-toplevel`',
                 encoding='utf-8',
                 capture_output=True,
@@ -137,6 +140,7 @@ def _get_git_changes(
             print_info(f"REPOSITORY NAME {repository_name.stdout}", color='orange')
 
             ls_lah = subprocess.run(
+                f'cd {solution_root} && ' +
                 'basename `git rev-parse --show-toplevel`',
                 encoding='utf-8',
                 capture_output=True,
@@ -150,7 +154,7 @@ def _get_git_changes(
 
             print_info("-" * 10, color='red')
 
-            print_info("DEBUG INFO", color='orange')
+            print_info("STUDENT GITLOG", color='orange')
             dbg_gitlog2 = subprocess.run(
                 f'cd {solution_root} && ' +
                 'git --no-pager log --decorate=short -n100',
