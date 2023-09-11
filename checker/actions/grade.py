@@ -157,6 +157,7 @@ def _get_git_changes(
             print_info("STUDENT GITLOG", color='orange')
             dbg_gitlog2 = subprocess.run(
                 f'cd {solution_root} && ' +
+                'git fetch --unshallow' +
                 'git --no-pager log --decorate=short -n100',
                 encoding='utf-8',
                 capture_output=True,
@@ -180,7 +181,7 @@ def _get_git_changes(
                 shell=True
             )
             print_info(result.stderr, color='grey')
-            print_info(result.stdout, color='grey')
+            print_info(result.stdout, color='red')
 
             print_info('---')
 
