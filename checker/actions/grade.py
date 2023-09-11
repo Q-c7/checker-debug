@@ -115,14 +115,16 @@ def _get_git_changes(
                 capture_output=True,
                 shell=True
             )
-            print_info(dbg_gitlog, color='orange')
+            print_info(dbg_gitlog.stdout, color='orange')
+            print_info(dbg_gitlog.stderr, color='red')
             dbg_gitstatus = subprocess.run(
                 'git status',
                 encoding='utf-8',
                 capture_output=True,
                 shell=True
             )
-            print_info(dbg_gitstatus, color='orange')
+            print_info(dbg_gitstatus.stdout, color='orange')
+            print_info(dbg_gitstatus.stderr, color='orange')
 
             print_info(f'Looking log_between_no_upstream between {prev_commit_sha} and {current_commit_sha} '
                        f'which not in `{public_repo_url}`...')
