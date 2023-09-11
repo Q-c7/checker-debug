@@ -134,9 +134,19 @@ def _get_git_changes(
                 capture_output=True,
                 shell=True
             )
-            print_info(f"REPOSITORY NAME {repository_name}", color='orange')
+            print_info(f"REPOSITORY NAME {repository_name.stdout}", color='orange')
+
+            ls_lah = subprocess.run(
+                'basename `git rev-parse --show-toplevel`',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(f"ls -lah {ls_lah.stdout}", color='orange')
+
             print_info(f"public_repo_url {public_repo_url}", color='orange')
-            print_info(f"SOLUTION ROOT {public_repo_url}", color='orange')
+            
+            print_info(f"solution_root {solution_root}", color='orange')
 
             print_info("-" * 10, color='red')
 
