@@ -117,6 +117,7 @@ def _get_git_changes(
             )
             print_info(dbg_gitlog.stdout, color='orange')
             print_info(dbg_gitlog.stderr, color='red')
+            print_info("-" * 10, color='red')
             dbg_gitstatus = subprocess.run(
                 'git status',
                 encoding='utf-8',
@@ -125,6 +126,19 @@ def _get_git_changes(
             )
             print_info(dbg_gitstatus.stdout, color='orange')
             print_info(dbg_gitstatus.stderr, color='red')
+            print_info("-" * 10, color='red')
+
+            repository_name = subprocess.run(
+                'basename `git rev-parse --show-toplevel`',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(f"REPOSITORY NAME {repository_name}", color='orange')
+            print_info(f"public_repo_url {public_repo_url}", color='orange')
+            print_info(f"SOLUTION ROOT {public_repo_url}", color='orange')
+
+            print_info("-" * 10, color='red')
 
             print_info(f'Looking log_between_no_upstream between {prev_commit_sha} and {current_commit_sha} '
                        f'which not in `{public_repo_url}`...')
