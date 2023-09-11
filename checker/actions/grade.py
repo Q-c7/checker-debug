@@ -141,7 +141,7 @@ def _get_git_changes(
 
             ls_lah = subprocess.run(
                 f'cd {solution_root} && ' +
-                'basename `git rev-parse --show-toplevel`',
+                'ls -lah',
                 encoding='utf-8',
                 capture_output=True,
                 shell=True
