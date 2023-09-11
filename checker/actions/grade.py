@@ -124,7 +124,7 @@ def _get_git_changes(
                 shell=True
             )
             print_info(dbg_gitstatus.stdout, color='orange')
-            print_info(dbg_gitstatus.stderr, color='orange')
+            print_info(dbg_gitstatus.stderr, color='red')
 
             print_info(f'Looking log_between_no_upstream between {prev_commit_sha} and {current_commit_sha} '
                        f'which not in `{public_repo_url}`...')
