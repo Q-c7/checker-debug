@@ -155,9 +155,19 @@ def _get_git_changes(
             print_info("-" * 10, color='red')
 
             print_info("STUDENT GITLOG", color='orange')
+            try_to_fetch = subprocess.run(
+                f'cd {solution_root} && ' +
+                'git fetch --unshallow',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(try_to_fetch.stdout, color='orange')
+            print_info(try_to_fetch.stderr, color='red')
+
             dbg_gitlog2 = subprocess.run(
                 f'cd {solution_root} && ' +
-                'git fetch --unshallow' +
+                # 'git fetch --unshallow && ' +
                 'git --no-pager log --decorate=short -n100',
                 encoding='utf-8',
                 capture_output=True,
