@@ -145,8 +145,21 @@ def _get_git_changes(
             print_info(f"ls -lah {ls_lah.stdout}", color='orange')
 
             print_info(f"public_repo_url {public_repo_url}", color='orange')
-            
+
             print_info(f"solution_root {solution_root}", color='orange')
+
+            print_info("-" * 10, color='red')
+
+            print_info("DEBUG INFO", color='orange')
+            dbg_gitlog2 = subprocess.run(
+                f'cd {solution_root} && ' +
+                'git --no-pager log --decorate=short -n100',
+                encoding='utf-8',
+                capture_output=True,
+                shell=True
+            )
+            print_info(dbg_gitlog2.stdout, color='orange')
+            print_info(dbg_gitlog2.stderr, color='red')
 
             print_info("-" * 10, color='red')
 
